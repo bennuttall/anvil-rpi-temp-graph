@@ -4,10 +4,74 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {}
+  properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
+  components:
+  - type: Label
+    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Model:', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_2
+    layout_properties: {grid_position: 'FDITXJ,QKYYFP'}
+  - type: Label
+    properties: {}
+    name: model
+    layout_properties: {grid_position: 'FDITXJ,ESZNCJ'}
+  - type: Label
+    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Revision code:', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_4
+    layout_properties: {grid_position: 'WEVXJK,GSGUDM'}
+  - type: Label
+    properties: {}
+    name: revision
+    layout_properties: {grid_position: 'WEVXJK,GPYNZE'}
+  - type: Label
+    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Hostname:', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_6
+    layout_properties: {grid_position: 'XHITZF,SVBOHI'}
+  - type: Label
+    properties: {}
+    name: hostname
+    layout_properties: {grid_position: 'XHITZF,ERMMGP'}
+  - type: Label
+    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'CPU temperature:', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_8
+    layout_properties: {grid_position: 'SWORML,HZXWTZ'}
+  - type: Label
+    properties: {}
+    name: temperature
+    layout_properties: {grid_position: 'SWORML,CNYDRA'}
+  - type: Plot
+    properties: {}
+    name: temperature_plot
+    layout_properties: {grid_position: 'RTSCCG,VIBABY'}
+  - type: Button
+    properties: {role: primary-color, align: right, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Joke, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: joke_btn
+    layout_properties: {grid_position: 'ALTKGL,OUJCJF'}
+    event_bindings: {click: get_joke}
 - type: FlowPanel
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Raspberry Pi Temperature Demo, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_1
+  layout_properties: {slot: title}

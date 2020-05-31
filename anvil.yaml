@@ -1,6 +1,25 @@
 allow_embedding: false
-package_name: Material_Design_2
-name: Material Design 2
+package_name: PiTemperatureDemo
+db_schema:
+- name: Temperatures
+  id: 57997
+  python_name: temperatures
+  columns:
+    3iHcydtn2WQ=:
+      name: temperature
+      type: number
+      admin_ui: {order: 1, width: 200}
+    HUKUFmd8fz4=:
+      name: datetime
+      type: datetime
+      admin_ui: {order: 0, width: 200}
+  access: {python_name: temperatures, app_id: VSPXKHLKL3BPYLKX, server: full, client: none,
+    table_id: 57997}
+name: PiTemperatureDemo
 startup_form: Form1
+renamed: true
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
-services: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {auto_create_missing_columns: false}
