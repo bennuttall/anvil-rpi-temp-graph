@@ -3,7 +3,12 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-from datetime import datetime
+from datetime import datetime, timedelta
+from gpiozero import pi_info, CPUTemperature
+import pyjokes
+
+pi = pi_info()
+cpu = CPUTemperature()
 
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
@@ -14,31 +19,41 @@ from datetime import datetime
 #
 @anvil.server.callable
 def get_model():
-  return "Some model number"
+  return pi.model
 
 @anvil.server.callable
 def get_revision_code():
-  return "Some rev code"
+  return pi.revision
 
 @anvil.server.callable
 def get_hostname():
-  return "Some hostname"
+  with open('/etc/hostname') as f:
+    return f.readline()
 
 @anvil.server.callable
 def get_temperature():
-  return "Some temperature"
+  return cpu.temperature
 
 @anvil.server.callable
 def get_joke():
-  return "Some joke"
+  return pyjokes.get_joke()
 
-@anvil.server.callable
+def delete_old_temperatures():
+  yesterday = datetime.now() - timedelta(days=1)
+  old_temps = app_tables.temperatures.search(
+    datetime=q.less_than(yesterday)
+  )
+  for row in old_temps:
+    row.delete()
+
+@anvil.server.background_task
 def save_temperature():
+  delete_old_temperatures()
   app_tables.temperatures.add_row(
     datetime=datetime.now(),
-    temperature=53,
+    temperature=cpu.temperature,
   )
-  
+
 @anvil.server.callable
 def get_temperature_data():
   data = app_tables.temperatures.search()

@@ -23,3 +23,10 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {auto_create_missing_columns: false}
+scheduled_tasks:
+- task_name: save_temperature
+  time_spec:
+    n: 1
+    every: minute
+    at: {}
+  job_id: LOGTEMP
